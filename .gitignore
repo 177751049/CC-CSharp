@@ -1,0 +1,89 @@
+# ===== 构建产物 =====
+[Bb]in/
+[Oo]bj/
+**/build/
+build/
+*publish/
+publish-cs/
+发布/
+发布_旧解析器备份/
+dist/
+out/
+_build-tmp/
+
+# ===== 编译产物二进制 =====
+*.exe
+*.dll
+*.pdb
+*.sys
+*.so
+*.dylib
+*.lib
+*.obj
+*.cache
+
+# ===== 大型二进制资源（可从源/打包脚本重建）=====
+*.pak
+*.glb
+*.gltf
+*.wasm
+*.bin
+*.7z
+*.zip
+*.etl
+*.dmp
+
+# ===== 第三方前端静态库（three.js 等，避免仓库膨胀）=====
+**/vendor/
+**/node_modules/
+
+# ===== Python 缓存 =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# ===== 运行数据 / 解析落盘产物 =====
+captures/
+pending/
+keys/
+logs/
+*.log
+state-latest.json
+status-latest.json
+identity-cache.json
+parser-errors.jsonl
+snapshot-final.json
+parser-result.json
+realtime.jsonl
+
+# ===== 本地临时输出 =====
+probe_out.txt
+test_out.txt
+*.tmp
+*.new
+
+# ===== 本地凭据 / 运维配置 =====
+_ops/
+**/hosts.json
+!**/hosts.example.json
+server.json
+!**/deploy/server.json
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+*.pfx
+*.p12
+keys.*.json
+secrets.json
+
+# ===== 编辑器 / 系统 =====
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+Thumbs.db
+desktop.ini

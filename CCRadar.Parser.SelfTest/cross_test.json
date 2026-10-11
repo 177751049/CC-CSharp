@@ -1,0 +1,529 @@
+[
+ {
+  "kind": "repdec4",
+  "class_name": "BP_DFMPlayerController_C",
+  "cmds": [
+   {
+    "index": 0,
+    "type": 3,
+    "end_cmd": 0,
+    "parent_index": 0
+   },
+   {
+    "index": 1,
+    "type": 3,
+    "end_cmd": 0,
+    "parent_index": 1
+   },
+   {
+    "index": 2,
+    "type": 3,
+    "end_cmd": 0,
+    "parent_index": 2
+   },
+   {
+    "index": 3,
+    "type": 3,
+    "end_cmd": 0,
+    "parent_index": 3
+   },
+   {
+    "index": 4,
+    "type": 3,
+    "end_cmd": 0,
+    "parent_index": 4
+   },
+   {
+    "index": 5,
+    "type": 6,
+    "end_cmd": 0,
+    "parent_index": 5
+   },
+   {
+    "index": 7,
+    "type": 8,
+    "end_cmd": 0,
+    "parent_index": 7
+   },
+   {
+    "index": 11,
+    "type": 7,
+    "end_cmd": 0,
+    "parent_index": 7
+   },
+   {
+    "index": 12,
+    "type": 8,
+    "end_cmd": 0,
+    "parent_index": 7
+   },
+   {
+    "index": 13,
+    "type": 8,
+    "end_cmd": 0,
+    "parent_index": 8
+   },
+   {
+    "index": 14,
+    "type": 6,
+    "end_cmd": 0,
+    "parent_index": 9
+   },
+   {
+    "index": 15,
+    "type": 8,
+    "end_cmd": 0,
+    "parent_index": 10
+   }
+  ],
+  "payload": "02091840a08041c5e18c0ce29a8044903cc53b84c50346ccbc0100",
+  "payload_bits": 214,
+  "expected_status": "exact",
+  "expected_position": 214,
+  "expected_events": [
+   {
+    "path": [],
+    "handle": 1,
+    "type": 3,
+    "tname": "Bool",
+    "value": true,
+    "cmd_index": 0,
+    "parent_index": 0
+   },
+   {
+    "path": [],
+    "handle": 2,
+    "type": 3,
+    "tname": "Bool",
+    "value": false,
+    "cmd_index": 1,
+    "parent_index": 1
+   },
+   {
+    "path": [],
+    "handle": 3,
+    "type": 3,
+    "tname": "Bool",
+    "value": false,
+    "cmd_index": 2,
+    "parent_index": 2
+   },
+   {
+    "path": [],
+    "handle": 4,
+    "type": 3,
+    "tname": "Bool",
+    "value": false,
+    "cmd_index": 3,
+    "parent_index": 3
+   },
+   {
+    "path": [],
+    "handle": 5,
+    "type": 3,
+    "tname": "Bool",
+    "value": false,
+    "cmd_index": 4,
+    "parent_index": 4
+   },
+   {
+    "path": [],
+    "handle": 6,
+    "type": 6,
+    "tname": "Byte",
+    "value": 42,
+    "cmd_index": 5,
+    "parent_index": 5
+   },
+   {
+    "path": [],
+    "handle": 7,
+    "type": 8,
+    "tname": "Object",
+    "value": {
+     "guid": 6451
+    },
+    "cmd_index": 7,
+    "parent_index": 7
+   },
+   {
+    "path": [],
+    "handle": 8,
+    "type": 7,
+    "tname": "Name",
+    "value": {
+     "hardcoded": true,
+     "hardcoded_index": 181,
+     "text": null,
+     "number": 0,
+     "interval": [
+      93,
+      110
+     ]
+    },
+    "cmd_index": 11,
+    "parent_index": 7
+   },
+   {
+    "path": [],
+    "handle": 9,
+    "type": 8,
+    "tname": "Object",
+    "value": {
+     "guid": 15520
+    },
+    "cmd_index": 12,
+    "parent_index": 7
+   },
+   {
+    "path": [],
+    "handle": 10,
+    "type": 8,
+    "tname": "Object",
+    "value": {
+     "guid": 1143
+    },
+    "cmd_index": 13,
+    "parent_index": 8
+   },
+   {
+    "path": [],
+    "handle": 11,
+    "type": 6,
+    "tname": "Byte",
+    "value": 15,
+    "cmd_index": 14,
+    "parent_index": 9
+   },
+   {
+    "path": [],
+    "handle": 12,
+    "type": 8,
+    "tname": "Object",
+    "value": {
+     "guid": 64664
+    },
+    "cmd_index": 15,
+    "parent_index": 10
+   }
+  ]
+ },
+ {
+  "kind": "repdec6",
+  "class_name": "BP_DFMPlayerController_C",
+  "cmds": [
+   {
+    "index": 0,
+    "type": 3,
+    "end_cmd": 0,
+    "parent_index": 0
+   },
+   {
+    "index": 1,
+    "type": 3,
+    "end_cmd": 0,
+    "parent_index": 1
+   },
+   {
+    "index": 2,
+    "type": 3,
+    "end_cmd": 0,
+    "parent_index": 2
+   },
+   {
+    "index": 3,
+    "type": 3,
+    "end_cmd": 0,
+    "parent_index": 3
+   },
+   {
+    "index": 4,
+    "type": 3,
+    "end_cmd": 0,
+    "parent_index": 4
+   },
+   {
+    "index": 5,
+    "type": 6,
+    "end_cmd": 0,
+    "parent_index": 5
+   },
+   {
+    "index": 7,
+    "type": 8,
+    "end_cmd": 0,
+    "parent_index": 7
+   },
+   {
+    "index": 11,
+    "type": 7,
+    "end_cmd": 0,
+    "parent_index": 7
+   },
+   {
+    "index": 12,
+    "type": 8,
+    "end_cmd": 0,
+    "parent_index": 7
+   },
+   {
+    "index": 13,
+    "type": 8,
+    "end_cmd": 0,
+    "parent_index": 8
+   },
+   {
+    "index": 14,
+    "type": 6,
+    "end_cmd": 0,
+    "parent_index": 9
+   },
+   {
+    "index": 15,
+    "type": 8,
+    "end_cmd": 0,
+    "parent_index": 10
+   }
+  ],
+  "payload": "041034885001838b43b02e443a89e930038a3f078b7c8ce7420300",
+  "payload_bits": 215,
+  "expected_status": "exact",
+  "expected_position": 215,
+  "expected_events": [
+   {
+    "path": [],
+    "handle": 1,
+    "type": 3,
+    "tname": "Bool",
+    "value": false,
+    "cmd_index": 0,
+    "parent_index": 0
+   },
+   {
+    "path": [],
+    "handle": 2,
+    "type": 3,
+    "tname": "Bool",
+    "value": true,
+    "cmd_index": 1,
+    "parent_index": 1
+   },
+   {
+    "path": [],
+    "handle": 3,
+    "type": 3,
+    "tname": "Bool",
+    "value": true,
+    "cmd_index": 2,
+    "parent_index": 2
+   },
+   {
+    "path": [],
+    "handle": 4,
+    "type": 3,
+    "tname": "Bool",
+    "value": true,
+    "cmd_index": 3,
+    "parent_index": 3
+   },
+   {
+    "path": [],
+    "handle": 5,
+    "type": 3,
+    "tname": "Bool",
+    "value": false,
+    "cmd_index": 4,
+    "parent_index": 4
+   },
+   {
+    "path": [],
+    "handle": 6,
+    "type": 6,
+    "tname": "Byte",
+    "value": 46,
+    "cmd_index": 5,
+    "parent_index": 5
+   },
+   {
+    "path": [],
+    "handle": 7,
+    "type": 8,
+    "tname": "Object",
+    "value": {
+     "guid": 12000
+    },
+    "cmd_index": 7,
+    "parent_index": 7
+   },
+   {
+    "path": [],
+    "handle": 8,
+    "type": 7,
+    "tname": "Name",
+    "value": {
+     "hardcoded": true,
+     "hardcoded_index": 58,
+     "text": null,
+     "number": 0,
+     "interval": [
+      94,
+      103
+     ]
+    },
+    "cmd_index": 11,
+    "parent_index": 7
+   },
+   {
+    "path": [],
+    "handle": 9,
+    "type": 8,
+    "tname": "Object",
+    "value": {
+     "guid": 55401
+    },
+    "cmd_index": 12,
+    "parent_index": 7
+   },
+   {
+    "path": [],
+    "handle": 10,
+    "type": 8,
+    "tname": "Object",
+    "value": {
+     "guid": 959
+    },
+    "cmd_index": 13,
+    "parent_index": 8
+   },
+   {
+    "path": [],
+    "handle": 11,
+    "type": 6,
+    "tname": "Byte",
+    "value": 249,
+    "cmd_index": 14,
+    "parent_index": 9
+   },
+   {
+    "path": [],
+    "handle": 12,
+    "type": 8,
+    "tname": "Object",
+    "value": {
+     "guid": 57703
+    },
+    "cmd_index": 15,
+    "parent_index": 10
+   }
+  ]
+ },
+ {
+  "kind": "sna",
+  "payload": "02000000140200200000005e8ec2daca5e8cdede5c84c2e4be86000c00",
+  "payload_bits": 225,
+  "has_exports": true,
+  "has_must": false,
+  "expected_info": {
+   "exports": [
+    {
+     "guid": 5,
+     "outer": 0,
+     "path": "/Game/Foo.Bar_C",
+     "flags": 1
+    }
+   ],
+   "must": [],
+   "num_exports": 1,
+   "actor": 3,
+   "static_actor": true,
+   "stream_start": 225
+  },
+  "expected_stream_start": 225
+ },
+ {
+  "kind": "blocks",
+  "payload": "03e440022679e01e0b00",
+  "payload_bits": 80,
+  "expected_blocks": [
+   {
+    "start": 0,
+    "has_rep": 1,
+    "is_actor": 1,
+    "sub": null,
+    "stably": null,
+    "cls": null,
+    "deleted": false,
+    "num_bits": 0,
+    "payload_start": 10,
+    "payload_end": 10
+   },
+   {
+    "start": 10,
+    "has_rep": 1,
+    "is_actor": 0,
+    "sub": 7,
+    "stably": 0,
+    "cls": 9,
+    "deleted": false,
+    "num_bits": 24,
+    "payload_start": 37,
+    "payload_end": 61
+   },
+   {
+    "start": 61,
+    "has_rep": 0,
+    "is_actor": 0,
+    "sub": 11,
+    "stably": 0,
+    "cls": 0,
+    "deleted": true,
+    "num_bits": 0,
+    "payload_start": 80,
+    "payload_end": 80
+   }
+  ]
+ },
+ {
+  "kind": "repmove4",
+  "payload": "0100000001000000335e6511c14484cd0c452361452367458367454a8638c792061a5408a5a5a5a5",
+  "payload_bits": 320,
+  "start": 0,
+  "end": 320,
+  "expected_frame": {
+   "count": 1,
+   "present": [
+    0
+   ],
+   "items": {
+    "0": {
+     "sel": 0,
+     "mask": 65,
+     "scalar": -42942.9155,
+     "pos": [
+      144081565.9,
+      -14323781.2,
+      28640338.8
+     ],
+     "pv": [
+      100,
+      -200,
+      300
+     ],
+     "f52": 2,
+     "rot": [
+      90.0,
+      91.40625,
+      92.8125
+     ]
+    }
+   },
+   "bit_a": 0,
+   "has_bits": 0,
+   "has_embedded": 0,
+   "tail32": 2779096485,
+   "pos": 320,
+   "left": 0,
+   "stopped": null
+  }
+ }
+]

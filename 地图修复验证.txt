@@ -1,0 +1,46 @@
+CC雷达 2D 地图损坏修复验证 · 2026-10-11 14:28:12
+==================================================
+
+【根因】CCRadar.Parser/Engine/AssetStore.cs 的 ReadBytes 直接 _entries[k].Open() 无锁。
+  .NET ZipArchive 非线程安全：地图页并行拉瓦片时多个 Open() 争用底层流位置，
+  轻则抛 'A local file header is corrupt'，重则返回错位字节 → 浏览器解码出粉紫花屏/灰块。
+  （零号大坝是默认图，最先加载、最先中招；其坏瓦片被浏览器按 max-age 缓存，故修完仍显示旧坏图）
+
+【修复】
+  1) AssetStore：ZIP 读取加锁串行化 + 内容不可变字节缓存（FIFO 上限 96MB）。
+  2) EngineWebServer：瓦片 URL 追加构建版本号 ?v=<exe写入时间>，构建一变 URL 即变，
+     旧坏缓存自动失效，无需用户手动清缓存。
+  3) AssetStore.WriteJson：/api/* 响应加 Cache-Control: no-store，避免 /api/map 被缓存后
+     页面仍拿到旧 tileUrl。
+
+【pak 自身无问题】2046 张瓦片全为合法 JPEG；6 张地图切片栅格各 341 张、缺 0；catalog 与 pak 目录一致。
+
+---- ① AssetStore 并发读取探针（16 线程 × 2046）----
+
+  maps2d 瓦片数：2046
+  参考读取：2046 张，JPEG 结构异常 0
+  并发读取：2046 次，字节不一致 0
+
+  [通过] AssetStore 并发读取一致
+
+---- ② HTTP 层全量瓦片校验（真实 HTTP 逐字节比对 pak）----
+  [通过] tileUrl 本地化 daba: /resources/maps2d/daba/{z}_{x}_{y}.jpg?v=8df276054738fb7
+  [通过] tileUrl 本地化 cgxg: /resources/maps2d/cgxg/{z}_{x}_{y}.jpg?v=8df276054738fb7
+  [通过] tileUrl 本地化 htjd: /resources/maps2d/htjd/{z}_{x}_{y}.jpg?v=8df276054738fb7
+  [通过] tileUrl 本地化 bks: /resources/maps2d/bks/{z}_{x}_{y}.jpg?v=8df276054738fb7
+  [通过] tileUrl 本地化 cxjy: /resources/maps2d/cxjy/{z}_{x}_{y}.jpg?v=8df276054738fb7
+  [通过] tileUrl 本地化 az3: /resources/maps2d/az3/{z}_{x}_{y}.jpg?v=8df276054738fb7
+  [通过] az3: 瓦片 341 一致 341 / 404 0 / 不一致 0
+  [通过] bks: 瓦片 341 一致 341 / 404 0 / 不一致 0
+  [通过] cgxg: 瓦片 341 一致 341 / 404 0 / 不一致 0
+  [通过] cxjy: 瓦片 341 一致 341 / 404 0 / 不一致 0
+  [通过] daba: 瓦片 341 一致 341 / 404 0 / 不一致 0
+  [通过] htjd: 瓦片 341 一致 341 / 404 0 / 不一致 0
+  合计 2046 张瓦片，失败项 0
+  [通过] HTTP 全量瓦片校验
+
+---- ③ 黄金对拍回归 ----
+=== 结果：通过 74，失败 0 ===
+
+---- ④ 进程内 HTTP 冒烟 ----
+=== 结果：通过 23，失败 0 ===

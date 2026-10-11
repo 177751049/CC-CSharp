@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    CC雷达 解析内核自测程序（不依赖第三方测试框架，离线可跑）。
+    覆盖：位流往返、SliceBits 位精确性、PackedInt/SerializeInt 边界、
+    端到端合成包解码、分片重组、并行与串行一致性。
+  -->
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>CCRadar.Parser.SelfTest</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CCRadar.Parser\CCRadar.Parser.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 黄金对拍向量（由 tools/gen_cross_test.py 的 Python 权威实现生成） -->
+    <None Include="cross_test.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

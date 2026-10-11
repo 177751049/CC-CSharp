@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    CC雷达 纯 C# 解析内核（移植自 Python: 源码/Parser/ErCore/src/codec + core）。
+    本项目只包含协议解析逻辑，不依赖 Windows 专属 API，可跨平台（为后续软路由 Linux 部署预留）。
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>CCRadar.Parser</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      网页与资源（radar.html / ui / vendor / m3d / avatars / map_*.json）。
+      必须用 Update 而不是 Include：SDK 默认 None 项已包含这些文件，
+      再 Include 会产生重复项，发布去重时部分文件丢失 CopyToPublishDirectory
+      元数据（实测 614→604，three.module.js / map_catalog.json 等 10 个文件 404）。
+    -->
+    <None Update="Web\**\*" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 数据文件：RepLayout catalog / prop meta / 各 schema（源码形态明文，AssetCrypto 兼容加密形态） -->
+    <None Update="Data\**\*.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="CCRadar.Parser.SelfTest" />
+  </ItemGroup>
+
+</Project>

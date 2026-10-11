@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <Version>1.0.0</Version>
+    <AssemblyName>CC雷达</AssemblyName>
+    <RootNamespace>CCRadar</RootNamespace>
+    <Product>CC雷达</Product>
+    <Title>CC雷达</Title>
+    <Description>CC 本地实时解析与 2D/3D 可视化（热点 + 局域网双模式，纯 C# 解析内核）</Description>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <SatelliteResourceLanguages>zh-Hans</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="System.IO" />
+    <Using Include="System.Net" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 纯 C# 解析内核（进程内运行，不再依赖外部 NvaParser.exe 子进程）。 -->
+    <ProjectReference Include="..\CCRadar.Parser\CCRadar.Parser.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\源码\dependencies\WinDivert-2.2.2\WinDivert.dll" Link="WinDivert.dll" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    <None Include="..\..\源码\dependencies\WinDivert-2.2.2\WinDivert64.sys" Link="WinDivert64.sys" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+  </ItemGroup>
+
+  <!--
+    PublishSingleFile 会漏拷部分 Web 资源（实测 614→604，three.module.js /
+    map_catalog.json / *.wasm 等 10 个文件丢失，网页 3D 与地图目录 404）。
+    发布后显式补齐 Web/ 与 Data/，保证单文件形态下资源完整。
+  -->
+  <Target Name="CopyParserAssetsAfterPublish" AfterTargets="Publish">
+    <ItemGroup>
+      <WebAssetFiles Include="$(MSBuildProjectDirectory)\..\CCRadar.Parser\Web\**\*" />
+      <DataAssetFiles Include="$(MSBuildProjectDirectory)\..\CCRadar.Parser\Data\**\*.json" />
+    </ItemGroup>
+    <Copy SourceFiles="@(WebAssetFiles)" SkipUnchangedFiles="true"
+          DestinationFiles="@(WebAssetFiles->'$(PublishDir)Web\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(DataAssetFiles)" SkipUnchangedFiles="true"
+          DestinationFiles="@(DataAssetFiles->'$(PublishDir)Data\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Message Importance="high" Text="已补齐 Web($(WebAssetFiles->Count())) + Data($(DataAssetFiles->Count())) 至 $(PublishDir)" />
+  </Target>
+
+</Project>

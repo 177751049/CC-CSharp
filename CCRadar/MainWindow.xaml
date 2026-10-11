@@ -1,0 +1,308 @@
+<Window x:Class="CCRadar.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CC雷达" Height="780" Width="1060" MinWidth="960" MinHeight="700"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Microsoft YaHei UI, Segoe UI"
+        Background="#F5F7FB"
+        TextOptions.TextRenderingMode="ClearType">
+
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#1F2937"/>
+        </Style>
+        <Style x:Key="CardBorder" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E5E7EB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="14"/>
+        </Style>
+        <Style x:Key="CardTitle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="#6B7280"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
+        <Style x:Key="MetricValue" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#111827"/>
+        </Style>
+        <Style x:Key="MetricLabel" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="11.5"/>
+            <Setter Property="Foreground" Value="#6B7280"/>
+            <Setter Property="Margin" Value="0,2,0,0"/>
+        </Style>
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#2563EB"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="24,10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1D4ED8"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#B6C6E3"/>
+                                <Setter Property="Foreground" Value="#EDF2FB"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SecondaryButton" TargetType="Button" BasedOn="{StaticResource PrimaryButton}">
+            <Setter Property="Background" Value="#EDF1F7"/>
+            <Setter Property="Foreground" Value="#1F2937"/>
+            <Setter Property="FontSize" Value="13.5"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Padding" Value="18,9"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="{TemplateBinding Padding}"
+                                BorderBrush="#D8DFE8" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#E0E7F0"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="StopButton" TargetType="Button" BasedOn="{StaticResource PrimaryButton}">
+            <Setter Property="Background" Value="#DC2626"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#B91C1C"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#EFB9B9"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="FieldBox" TargetType="TextBox">
+            <Setter Property="Background" Value="#FBFCFE"/>
+            <Setter Property="BorderBrush" Value="#D8DFE8"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,7"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="FieldCombo" TargetType="ComboBox">
+            <Setter Property="Background" Value="#FBFCFE"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="FontSize" Value="12.5"/>
+        </Style>
+        <Style x:Key="ModeRadio" TargetType="RadioButton">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+        <Style x:Key="LogList" TargetType="ListBox">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="12.5"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="18,12,18,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- 头部 -->
+        <DockPanel Grid.Row="0" LastChildFill="False" Margin="0,0,0,10">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="CC雷达" FontSize="24" FontWeight="Bold" Foreground="#111827"/>
+                <TextBlock Text="本地实时解析 · 2D/3D 可视化" FontSize="12.5" Foreground="#6B7280" VerticalAlignment="Bottom" Margin="12,0,0,3"/>
+            </StackPanel>
+            <DockPanel LastChildFill="False">
+                <Border DockPanel.Dock="Right" CornerRadius="999" Padding="14,6" Background="{Binding StatusOk, Converter={x:Null}}">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Background" Value="#ECF2FA"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding StatusText}" Value="运行中">
+                                    <Setter Property="Background" Value="#DDF5E8"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding StatusText}" Value="启动失败">
+                                    <Setter Property="Background" Value="#FDE8E8"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <TextBlock Text="{Binding StatusText}" FontSize="13" FontWeight="SemiBold">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="#4B5563"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding StatusText}" Value="运行中">
+                                        <Setter Property="Foreground" Value="#059669"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding StatusText}" Value="启动失败">
+                                        <Setter Property="Foreground" Value="#DC2626"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Border>
+            </DockPanel>
+        </DockPanel>
+
+        <!-- 取数模式 -->
+        <Border Grid.Row="1" Style="{StaticResource CardBorder}" Margin="0,0,0,12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- 局域网模式 -->
+                <Border Grid.Column="0" CornerRadius="10" Padding="12" Background="#F8FAFE" BorderBrush="#DCE6F5" BorderThickness="1">
+                    <StackPanel>
+                        <RadioButton GroupName="Mode" IsChecked="{Binding LanMode}" Style="{StaticResource ModeRadio}" Content="🌐  局域网模式（端游）"/>
+                        <TextBlock FontSize="11.5" Foreground="#6B7280" Margin="22,2,0,8" Text="另一台电脑运行游戏，本机做 ARP 改道解析"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="8"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="取数网卡" FontSize="11.5" Foreground="#6B7280"/>
+                                <ComboBox Style="{StaticResource FieldCombo}" ItemsSource="{Binding LanAdapters}" SelectedItem="{Binding SelectedLanAdapter}" Margin="0,3,0,0"
+                                          DisplayMemberPath="DisplayName" IsEnabled="{Binding NotRunning}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="目标设备（游戏电脑）" FontSize="11.5" Foreground="#6B7280"/>
+                                <ComboBox Style="{StaticResource FieldCombo}" ItemsSource="{Binding LanNeighbors}" SelectedItem="{Binding SelectedLanNeighbor}" Margin="0,3,0,0"
+                                          DisplayMemberPath="Address" IsEnabled="{Binding NotRunning}"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Margin="0,8,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="8"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="目标 IPv4（可直接输入）" FontSize="11.5" Foreground="#6B7280"/>
+                                <TextBox Style="{StaticResource FieldBox}" Text="{Binding TargetIp, UpdateSourceTrigger=PropertyChanged}" Margin="0,3,0,0"
+                                         IsEnabled="{Binding NotRunning}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" VerticalAlignment="Bottom">
+                                <Button Style="{StaticResource SecondaryButton}" Content="刷新邻居" Click="OnRefreshNeighbors" IsEnabled="{Binding NotRunning}"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- 热点模式 -->
+                <Border Grid.Column="2" CornerRadius="10" Padding="12" Background="#F8FBF8" BorderBrush="#D9EAD9" BorderThickness="1">
+                    <StackPanel>
+                        <RadioButton GroupName="Mode" IsChecked="{Binding HotspotMode}" Style="{StaticResource ModeRadio}" Content="📶  热点模式（手游）"/>
+                        <TextBlock FontSize="11.5" Foreground="#6B7280" Margin="22,2,0,8" Text="本机开移动热点，手机/平板连接后解析"/>
+                        <TextBlock Text="{Binding HotspotStatusText}" FontSize="12" Foreground="#374151" TextWrapping="Wrap"/>
+                        <TextBlock Text="热点在线设备" FontSize="11.5" Foreground="#6B7280" Margin="0,10,0,0"/>
+                        <ComboBox Style="{StaticResource FieldCombo}" ItemsSource="{Binding HotspotDevices}" SelectedItem="{Binding SelectedHotspotDevice}" Margin="0,3,0,0"
+                                  IsEnabled="{Binding NotRunning}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <Run Text="{Binding Name, Mode=OneWay}"/>
+                                        <Run Text="  "/><Run Text="{Binding Address, Mode=OneWay}"/>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <TextBlock Text="设备 IPv4（可直接输入）" FontSize="11.5" Foreground="#6B7280" Margin="0,8,0,0"/>
+                        <TextBox Style="{StaticResource FieldBox}" Text="{Binding TargetIp, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding NotRunning}"/>
+                        <Button Style="{StaticResource SecondaryButton}" Content="刷新热点设备" Margin="0,8,0,0" Click="OnRefreshHotspot" IsEnabled="{Binding NotRunning}" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- 控制行 -->
+        <Grid Grid.Row="2" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource PrimaryButton}" Content="▶  启动解析" Click="OnStart" IsEnabled="{Binding NotRunning}" MinWidth="180"/>
+                <Button Style="{StaticResource StopButton}" Content="■  停止并保存" Click="OnStop" IsEnabled="{Binding Running}" Margin="10,0,0,0" MinWidth="150"/>
+                <Button Style="{StaticResource SecondaryButton}" Content="打开网页雷达" Click="OnOpenWeb" Margin="10,0,0,0"/>
+                <TextBlock VerticalAlignment="Center" Margin="12,0,0,0" FontSize="12" Foreground="#2563EB"
+                           MaxWidth="320" TextTrimming="CharacterEllipsis"
+                           Text="{Binding WebUrl}"
+                           ToolTip="局域网内其它设备（手机/平板/另一台电脑）可直接用此地址打开雷达页"/>
+            </StackPanel>
+            <TextBlock Grid.Column="1" VerticalAlignment="Center" FontSize="12" Foreground="#6B7280"
+                       Text="{Binding SessionDirectory, StringFormat=会话目录：{0}}"/>
+        </Grid>
+
+        <!-- 实时指标 -->
+        <Border Grid.Row="3" Style="{StaticResource CardBorder}" Margin="0,0,0,12">
+            <StackPanel>
+                <TextBlock Style="{StaticResource CardTitle}" Text="实时状态（每秒刷新）"/>
+                <UniformGrid Columns="6" Rows="2">
+                    <StackPanel Margin="4"><TextBlock Style="{StaticResource MetricValue}" Text="{Binding UpRateLabel}"/><TextBlock Style="{StaticResource MetricLabel}" Text="上行 包/秒"/></StackPanel>
+                    <StackPanel Margin="4"><TextBlock Style="{StaticResource MetricValue}" Text="{Binding DownRateLabel}"/><TextBlock Style="{StaticResource MetricLabel}" Text="下行 包/秒"/></StackPanel>
+                    <StackPanel Margin="4"><TextBlock Style="{StaticResource MetricValue}" Foreground="#059669" Text="{Binding EstablishedLabel}"/><TextBlock Style="{StaticResource MetricLabel}" Text="TGCP 握手"/></StackPanel>
+                    <StackPanel Margin="4"><TextBlock Style="{StaticResource MetricValue}" Foreground="#059669" Text="{Binding KeysLabel}"/><TextBlock Style="{StaticResource MetricLabel}" Text="Key 候选"/></StackPanel>
+                    <StackPanel Margin="4"><TextBlock Style="{StaticResource MetricValue}" Foreground="#059669" Text="{Binding BoundLabel}"/><TextBlock Style="{StaticResource MetricLabel}" Text="UDP 已验证"/></StackPanel>
+                    <StackPanel Margin="4"><TextBlock Style="{StaticResource MetricValue}" Text="{Binding CharactersLabel}"/><TextBlock Style="{StaticResource MetricLabel}" Text="人物（实时）"/></StackPanel>
+                    <StackPanel Margin="4"><TextBlock Style="{StaticResource MetricValue}" Text="{Binding PlainLabel}"/><TextBlock Style="{StaticResource MetricLabel}" Text="明文 ↑/↓"/></StackPanel>
+                    <StackPanel Margin="4"><TextBlock Style="{StaticResource MetricValue}" Text="{Binding PendingLabel}"/><TextBlock Style="{StaticResource MetricLabel}" Text="待解密"/></StackPanel>
+                    <StackPanel Margin="4"><TextBlock Style="{StaticResource MetricValue}" Text="{Binding CoordRateLabel}"/><TextBlock Style="{StaticResource MetricLabel}" Text="坐标样本 /秒"/></StackPanel>
+                    <StackPanel Margin="4"><TextBlock Style="{StaticResource MetricValue}" Text="{Binding LootLabel}"/><TextBlock Style="{StaticResource MetricLabel}" Text="物资"/></StackPanel>
+                    <StackPanel Margin="4"><TextBlock Style="{StaticResource MetricValue}" Text="{Binding EventsLabel}"/><TextBlock Style="{StaticResource MetricLabel}" Text="解析输入事件"/></StackPanel>
+                    <StackPanel Margin="4"><TextBlock Style="{StaticResource MetricValue}" Text="{Binding JournalLabel}"/><TextBlock Style="{StaticResource MetricLabel}" Text="归档 MiB"/></StackPanel>
+                </UniformGrid>
+            </StackPanel>
+        </Border>
+
+        <!-- 日志 -->
+        <Border Grid.Row="4" Style="{StaticResource CardBorder}" Padding="10">
+            <ListBox Style="{StaticResource LogList}" ItemsSource="{Binding LogLines}" FontFamily="Consolas, Microsoft YaHei UI"/>
+        </Border>
+
+        <!-- 底部 -->
+        <TextBlock Grid.Row="5" Margin="0,8,0,0" FontSize="11" Foreground="#9CA3AF"
+                   Text="CC雷达 v1.0.0 · 解析器与资源包需与本程序同目录 · 局域网模式仅建议在自有网络环境使用"/>
+    </Grid>
+</Window>

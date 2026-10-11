@@ -1,0 +1,37 @@
+=== CC雷达 进程内引擎 · HTTP 冒烟 ===
+
+  pak=3270 条目 models=True webRoot=C:/Users/Administrator/Desktop/CC雷达/Web
+  服务已起 http://127.0.0.1:18680
+  绑定=http://+:18680/ 全网卡=True
+
+  重放事件 66538
+
+  pose 诊断: PoseSamples=1431 SelfPose=有 SelfPoseT=1791697719.658 ch3=1842 reasmThrow=0 reasmOut=1842
+  C# 语义产物 → C:\Users\Administrator\AppData\Local\Temp\ccradar_smoke
+
+  [通过] 自机上行位姿链  PoseSamples=1431 SelfPose=True ch3=1842 | API窗口内 age_ms=True yaw=True
+  [通过] 语义落盘产物  6/6 齐全
+  [通过] 雷达页 /  200 text/html 172400B
+  [通过] 雷达页/er /er  200 text/html 172400B
+  [通过] 状态 /api/status  200 application/json 2445B 含gateway-parser-status/v5=True
+  [通过] 地图清单 /api/map  200 application/json 432455B 含"maps"=True
+  [通过] 快照 /api/state  200 application/json 20961B 含"entities"=True
+  [通过] 快照内容  entities=24 self数组=True names=18
+  [通过] 状态富化字段  live_active=True schema=gateway-state/v5 self_aim_age_ms=False（时序敏感，仅供参考）
+  [通过] 实体富化字段  life_state=True pose_seq=True identity_status=True
+    state 片段: {"self":[342389,-788883.6,-16904.4],"self_yaw":0,"self_name":"\u4F60\u4E0D\u884C\u4E0B\u4E00\u58F9\u4F4D(self)","self_src":"ch","self_hp":{"total":[100,100],"source":"attribute_set","seq":17277,"max_source":"operator_default"},"self_life":{"state":"alive","status":1,"seq":17277,"source":"property_replication","field":"IsAlive","spawn_seq":16838,"generation":1,"confirmed":true,"dead":false,"downed"
+  [通过] 流列表 /api/flows  200 application/json 11B 含"runs"=True
+  [通过] 样式 /ui/shubao.css  200 text/css 15383B
+  [通过] 坞脚本 /ui/dock.js  200 text/javascript 5310B
+  [通过] leaflet /vendor/leaflet/leaflet.js  200 text/javascript 147552B
+  [通过] three /vendor/three/build/three.module.js  200 text/javascript 1280747B
+  [通过] three addons /vendor/three/examples/jsm/controls/OrbitControls.js  200 text/javascript 31590B
+  [通过] 地形清单 /m3d/manifest.json  200 application/json 7907B
+  [通过] r3d 引擎 /m3d/r3d.js  200 text/javascript 80513B
+  [通过] 干员头像 /avatars/%E7%BA%A2%E7%8B%BC.png  200 image/png 47727B
+  [通过] 地图目录(pak) /resources/map_catalog.json  200 application/json 516391B
+  [通过] 物资图标(pak) /resources/items/11010001001.png  200 image/png 65361B
+  [通过] 未命中 404 /nope-404  404
+  [通过] 局域网 IP 可达  192.168.6.254:18680 20961B
+
+=== 结果：通过 23，失败 0 ===
